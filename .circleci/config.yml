@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  ci: bigcommerce/internal@volatile
+  php: bigcommerce/internal-php@volatile
+
+jobs:
+  tests:
+    parameters:
+      php-version:
+        type: string
+    executor:
+      name: php/php
+      php-version: << parameters.php-version >>
+    steps:
+      - ci/pre-setup
+      - php/composer-install
+      - run: make test
+
+workflows:
+  version: 2
+  all-tests:
+    jobs:
+      - tests:
+          matrix:
+            parameters:
+              php-version: ["7.1"]
+      - php/composer-github:
+          filters:
+            branches:
+              only:
+                - master

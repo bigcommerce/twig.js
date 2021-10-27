@@ -1,5 +1,6 @@
 {
     "name": "jms/twig-js",
+    "homepage": "https://github.com/bigcommerce/twig.js",
     "type": "library",
     "description": "twig.js, flexible, secure, and high-performance templating engine for Javascript",
     "keywords": ["templating"],
